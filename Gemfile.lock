@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    i18n-complements (0.0.1)
+      i18n (>= 0.6)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    i18n (0.6.0)
+    rake (0.9.2.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  i18n-complements!
+  rake (>= 0.8.7)
