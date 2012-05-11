@@ -77,6 +77,14 @@ module I18n
       I18nComplements::Numisma.currencies
     end
 
+    def currency_label(currency_code)
+      if currency = I18nComplements::Numisma.currencies[currency_code.to_s]
+        currency.label
+      else
+        return "Unknown currency: #{currency_code}"
+      end
+    end
+
   end
 
 end
