@@ -1,0 +1,60 @@
+= I18nComplements
+
+I18n complements provides:
+* Numbers localization
+* Moneys localization (through ISO4217 codes)
+
+== Localize numbers
+
+    I18n.localize(2015.2, :locale => :eng) # => "2,015.200"
+    I18n.localize(2015.2, :locale => :fra) # => "2 015,200"
+
+With extensions: 
+
+    2015.2.l(:locale => :eng) # => "2,015.200"
+    2015.2.l(:locale => :fra) # => "2 015,200"
+   
+
+== Localize money
+
+    I18n.localize(13500, :currency => :JPY, :locale => :eng) # => "¥13,500"
+    I18n.localize(13500, :currency => :JPY, :locale => :fra) # => "13 500 ¥"
+    I18n.localize(13500, :currency => :JPY, :locale => :jpn) # => "13,500円"
+
+    I18n.localize(13500, :currency => :EUR, :locale => :eng) # => "€13,500.00"
+    I18n.localize(13500, :currency => :EUR, :locale => :fra) # => "13 500.00 €"
+
+With extensions:
+    13500.l(:currency => :JPY, :locale => :jpn) # => "13,500円"
+
+== Extensions
+
+Moreover it extends String, and Symbol for translations:
+
+    I18n.t("my.example", options..)
+    # is equivalent to
+    "my.example".t(options...)
+
+Or 
+
+    I18n.t(:this_is_another_example, options..)
+    # is equivalent to
+    :this_is_another_example.t(options...)
+
+And it extends Date, DateTime and Time for localization:
+    
+    Date.civil(2012, 1, 1).l(:locale => :fra) # => "1 janvier 2012"
+
+== Manipulating currencies
+
+To find existing currencies:
+
+    I18n.active_currencies # returns the list of used currencies
+    I18n.available_currencies # returns all known currencies
+    I18n.currency(<currency_code>) # returns a Currency object with its properties
+
+== To do
+
+* Enhances numerals localization using bases (10, 20...) and characters
+  of the language. Ex: Roman (Ⅰ, Ⅱ, Ⅲ, Ⅳ...), traditionnal chinese/japanese
+  numbers (一, 二, 三, 四...)

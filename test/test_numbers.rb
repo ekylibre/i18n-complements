@@ -7,6 +7,28 @@ class TestNumbers < Test::Unit::TestCase
     assert_nothing_raised do
       I18n.localize(14.5)
     end
+
+    assert_nothing_raised do
+      I18n.localize(413500)
+    end
+  end
+
+  def test_localization_with_core_extensions
+    assert_nothing_raised do
+      14.5.localize
+    end
+
+    assert_nothing_raised do
+      413500.localize
+    end   
+
+    assert_nothing_raised do
+      14.5.l
+    end
+
+    assert_nothing_raised do
+      413500.l
+    end   
   end
   
   def test_number_formatting
@@ -56,29 +78,13 @@ class TestNumbers < Test::Unit::TestCase
     assert_equal "62\u{00A0}951\u{00A0}413,141\u{00A0}592\u{00A0}6", I18n.localize(number, :locale => :fra)
   end
 
-
-  def test_localization_with_currency
-    I18n.localize(14.5, :currency => :JPY)
-    assert_nothing_raised do
-      I18n.localize(14.5, :currency => :JPY)
+  def test_number_formatting_with_core_extensions
+    for locale in [:eng, :fra, :jpn]
+      for number in [3, 21145, 0.5, 3.0, 14.53, 2144.5, 0.41421356, 3.1415926, 62951413.1415926]
+        assert_equal(number.l(:locale => locale), I18n.localize(number, :locale => locale))
+      end
     end
 
-    assert_nothing_raised do
-      I18n.localize(14.5, :currency => "JPY")
-    end
-
-    assert_raise(I18nComplements::InvalidCurrency) do
-      I18n.localize(14.5, :currency => "jPY")
-    end
   end
-
-  def test_formatting_with_currency
-    number = 413500
-    assert_equal "¥413,500", I18n.localize(number, :locale => :eng, :currency=>"JPY")
-    assert_equal "413\u{00A0}500\u{00A0}¥", I18n.localize(number, :locale => :fra, :currency=>"JPY")
-    assert_equal "413,500円", I18n.localize(number, :locale => :jpn, :currency=>"JPY")
-  end
-
-  
 
 end

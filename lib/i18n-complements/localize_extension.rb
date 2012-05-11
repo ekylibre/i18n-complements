@@ -6,7 +6,7 @@ module I18n
         # options.symbolize_keys!
         if object.respond_to?(:abs)
           if currency = options[:currency]
-            raise I18nComplements::InvalidCurrency.new("Currency #{currency.to_s} does not exist.") unless I18nComplements::Numisma[currency.to_s]
+            raise I18n::InvalidCurrency.new("Currency #{currency.to_s} does not exist.") unless I18nComplements::Numisma[currency.to_s]
             return I18nComplements::Numisma[currency.to_s].localize(object, :locale=>locale)
           else
             formatter = I18n.translate('number.format'.to_sym, :locale => locale, :default => {})
@@ -61,5 +61,3 @@ module I18n
     end
   end
 end
-
-# I18n::Backend::Base.send(:include, I18nComplements::Backend::Base)

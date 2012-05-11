@@ -59,3 +59,24 @@ module I18nComplements
     load_currencies
   end
 end
+
+
+module I18n
+
+  class << self
+
+    def currencies(currency_code)
+      I18nComplements::Numisma.currencies[currency_code.to_s]
+    end
+
+    def active_currencies
+      I18nComplements::Numisma.active_currencies
+    end
+
+    def available_currencies
+      I18nComplements::Numisma.currencies
+    end
+
+  end
+
+end

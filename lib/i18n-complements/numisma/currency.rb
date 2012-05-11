@@ -5,7 +5,7 @@ module I18nComplements
       attr_reader :code, :active, :cash, :countries, :number, :precision, :unit
       
       def initialize(code, options = {})
-        @code = code.strip.upcase
+        @code = code.strip # .upcase
         @active = (options[:active] ? true : false)
         @cash = options[:cash].to_a.collect{|x| x.to_f}.sort
         @countries = options[:countries].to_a.collect{|x| x.to_s}.sort.collect{|x| x.to_sym}

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.author = "Brice Texier"
   s.email  = "burisu@oneiros.fr"
   s.summary = "I18n missing functionnalities"
-  s.extra_rdoc_files = [ "LICENSE", "README" ]
+  s.extra_rdoc_files = [ "LICENSE", "README.rdoc" ]
   s.test_files = `git ls-files test/test_*.rb`.split("\n") 
   exclusions = [ "#{s.name}.gemspec", ".travis.yml", ".gitignore", "Gemfile", "Gemfile.lock", "Rakefile"]
   s.files = `git ls-files`.split("\n").delete_if{|f| exclusions.include?(f)}
@@ -17,7 +17,5 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   add_runtime_dependency = (s.respond_to?(:add_runtime_dependency) ? :add_runtime_dependency : :add_dependency)
   s.send(add_runtime_dependency, "i18n", [">= 0.6"])
-  s.add_development_dependency("rake", [">= 0.8.7"])
-#  s.add_development_dependency("test-unit", [">= 0"])
 end
 
