@@ -1,4 +1,10 @@
 eng:
+  date:
+    formats:
+      default: '%m %d, %Y'
+  time:
+    formats:
+      default: '%b. %d, %Y at %H:%M:%S'
   number:
     format:
       separator: '.'
@@ -8,3 +14,6 @@ eng:
       format:
         format: "%u%n"
         precision: 2
+  my:
+    example: My example is short
+  my_example: My example is short

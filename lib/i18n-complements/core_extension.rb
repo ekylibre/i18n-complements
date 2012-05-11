@@ -4,7 +4,7 @@
 
 class ::String
   def translate(options = {})
-    I18n.translate(options)
+    I18n.translate(self, options)
   end
   alias :t :translate
 
@@ -15,7 +15,7 @@ end
 
 class ::Symbol
   def translate(options = {})
-    I18n.translate(options)
+    I18n.translate(self, options)
   end
   alias :t :translate
 
