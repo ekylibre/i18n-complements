@@ -55,8 +55,7 @@ To find existing currencies:
 
 == To do
 
-* Enhance numerals localization using différent systems (decimal, 
-  vigesimal...). 
-* Use characters of the language for numerals. Ex: Roman numbers 
-  (Ⅰ, Ⅱ, Ⅲ, Ⅳ...), traditional chinese/japanese numbers (一, 二, 三, 
-  四...)
+* Enhance numerals localization using systems (decimal, 
+  vigesimal...) and characters of the language for numerals. 
+  Ex: Abjad numerals (ا, ب, ج, د...), Roman numbers (Ⅰ, Ⅱ, Ⅲ, Ⅳ...), 
+  traditional chinese/japanese numbers (一, 二, 三, 四...), 
