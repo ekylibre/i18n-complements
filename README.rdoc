@@ -22,7 +22,7 @@ With extensions:
     I18n.localize(13500, :currency => :JPY, :locale => :jpn) # => "13,500円"
 
     I18n.localize(13500, :currency => :EUR, :locale => :eng) # => "€13,500.00"
-    I18n.localize(13500, :currency => :EUR, :locale => :fra) # => "13 500.00 €"
+    I18n.localize(13500, :currency => :EUR, :locale => :fra) # => "13 500,00 €"
 
 With extensions:
     13500.l(:currency => :JPY, :locale => :jpn) # => "13,500円"
@@ -55,6 +55,7 @@ To find existing currencies:
 
 == To do
 
-* Enhances numerals localization using bases (10, 20...) and characters
-  of the language. Ex: Roman (Ⅰ, Ⅱ, Ⅲ, Ⅳ...), traditionnal chinese/japanese
-  numbers (一, 二, 三, 四...)
+* Enhance numerals localization using systems (decimal, 
+  vigesimal...) and characters of the language for numerals. 
+  Ex: Abjad numerals (ا, ب, ج, د...), Roman numbers (Ⅰ, Ⅱ, Ⅲ, Ⅳ...), 
+  traditional chinese/japanese numbers (一, 二, 三, 四...), 
