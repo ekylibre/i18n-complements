@@ -8,7 +8,7 @@ class TestExtensions < Test::Unit::TestCase
   end
 
   def test_string_translation
-    assert_equal "My example is short", I18n.translate("my_example")
+    assert_equal "My example is so short", I18n.translate("my_example")
     assert_equal I18n.translate("my_example"), "my_example".translate
     assert_equal I18n.translate("my_example"), "my_example".t
 
@@ -18,7 +18,7 @@ class TestExtensions < Test::Unit::TestCase
   end
 
   def test_symbol_translation
-    assert_equal "My example is short", I18n.translate(:my_example)
+    assert_equal "My example is so short", I18n.translate(:my_example)
     assert_equal I18n.translate(:my_example), :my_example.translate
     assert_equal I18n.translate(:my_example), :my_example.t
   end
@@ -26,6 +26,8 @@ class TestExtensions < Test::Unit::TestCase
 
   def test_date_localization
     date = Date.civil(1999, 12, 31)
+
+    assert_equal Date, date.class
 
     assert_nothing_raised do
       date.localize
@@ -41,6 +43,8 @@ class TestExtensions < Test::Unit::TestCase
   def test_datetime_localization
     datetime = DateTime.civil(1999, 12, 31, 23, 59, 59)
 
+    assert_equal DateTime, datetime.class
+
     assert_nothing_raised do
       datetime.localize
     end
@@ -54,6 +58,8 @@ class TestExtensions < Test::Unit::TestCase
 
   def test_time_localization
     time = DateTime.civil(1999, 12, 31, 23, 59, 59).to_time
+
+    assert_equal Time, time.class
 
     assert_nothing_raised do
       time.localize
