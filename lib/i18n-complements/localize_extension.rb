@@ -1,10 +1,13 @@
 module I18n
   module Backend
-    module Base
+
+    class Simple
 
       def localize_with_numbers(locale, object, format = :default, options = {})
-        # options.symbolize_keys!
-        if object.respond_to?(:abs)
+        
+        if object.respond_to?(:strftime)
+          return localize_without_numbers(locale, object, format, options)
+        elsif object.respond_to?(:abs)
           if currency = options[:currency]
             raise I18n::InvalidCurrency.new("Currency #{currency.to_s} does not exist.") unless I18nComplements::Numisma[currency.to_s]
             return I18nComplements::Numisma[currency.to_s].localize(object, :locale=>locale)
@@ -48,15 +51,13 @@ module I18n
               return format.gsub(/%n/, value).gsub(/%s/, "\u{00A0}")
             end
           end
-        elsif object.respond_to?(:strftime)
-          return localize_without_numbers(locale, object, format, options)
         else
-          raise ArgumentError, "Object must be a Numeric, Date, DateTime or Time object. #{object.inspect} given."
+          raise ArgumentError, "Object must be a Numeric, Date, DateTime or Time object. #{object.class.name}:#{object.inspect} given."
         end
       end
 
-      alias :localize_without_numbers :localize
-      alias :localize :localize_with_numbers  
+      alias_method(:localize_without_numbers, :localize)
+      alias_method(:localize, :localize_with_numbers)
 
     end
   end

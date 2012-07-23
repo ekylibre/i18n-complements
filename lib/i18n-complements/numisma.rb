@@ -61,7 +61,7 @@ module I18nComplements
 end
 
 
-module I18n
+module ::I18n
 
   class << self
 
