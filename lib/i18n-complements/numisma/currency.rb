@@ -36,6 +36,10 @@ module I18nComplements
         self.code == other_currency.code
       end
 
+      def to_currency
+        self
+      end
+
       # Produces a amount of the currency with the locale parameters
       # TODO: Find a better way to specify number formats which are more complex that the default Rails use
       def localize(amount, options={})

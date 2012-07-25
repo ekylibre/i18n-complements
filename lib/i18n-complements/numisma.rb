@@ -85,6 +85,14 @@ module ::I18n
       end
     end
 
+    def currency_rate(from, to)
+      I18nComplements::Numisma.currency_rate(from, to)
+    end
+
+    def currencies_file
+      I18nComplements::Numisma.currencies_file
+    end
+
   end
 
 end

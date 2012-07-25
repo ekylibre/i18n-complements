@@ -95,7 +95,23 @@ class TestCurrencies < Test::Unit::TestCase
     assert_nothing_raised do
       "USD".to_currency.name
     end
+
+    assert_nothing_raised do
+      :JPY.to_currency.to_currency.name
+    end
+
+    assert_nothing_raised do
+      :JPY.to_currency.to_currency.to_currency.name
+    end
+    
+    assert_equal :JPY.to_currency, :JPY.to_currency.to_currency
+
+    currency = :JPY.to_currency
+    
+    assert_equal currency, currency.to_currency
+    assert_equal currency.to_currency, currency.to_currency.to_currency
   end
+  
   
   
 end
