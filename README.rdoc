@@ -3,6 +3,8 @@
 I18n complements provides:
 * Numbers localization
 * Moneys localization (through ISO4217 codes)
+* Boolean localization
+* String localization (do nothing but permits to generalize use of localization)
 
 == Localize numbers
 
