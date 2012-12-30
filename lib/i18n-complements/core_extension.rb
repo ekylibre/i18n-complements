@@ -8,6 +8,11 @@ class ::String
   end
   alias :t :translate
 
+  def localize(options = {})
+    I18n.translate(self, options)
+  end
+  alias :l :localize
+
   def to_currency
     I18n.currencies(self)
   end
@@ -25,6 +30,20 @@ class ::Symbol
 end
 
 # Localization
+
+class ::TrueClass
+  def localize(options = {})
+    I18n.localize(self, options)
+  end
+  alias :l :localize
+end
+
+class ::FalseClass
+  def localize(options = {})
+    I18n.localize(self, options)
+  end
+  alias :l :localize
+end
 
 class ::Numeric
   def localize(options = {})
