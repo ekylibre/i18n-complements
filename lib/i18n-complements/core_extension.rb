@@ -1,7 +1,5 @@
 # TODO: Rewrite this "not DRY" code
 
-# Translation
-
 class ::String
   def translate(options = {})
     I18n.translate(self, options)
@@ -9,7 +7,7 @@ class ::String
   alias :t :translate
 
   def localize(options = {})
-    I18n.translate(self, options)
+    I18n.localize(self, options)
   end
   alias :l :localize
 
@@ -28,8 +26,6 @@ class ::Symbol
     I18n.currencies(self.to_s)
   end
 end
-
-# Localization
 
 class ::TrueClass
   def localize(options = {})

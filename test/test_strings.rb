@@ -11,6 +11,10 @@ class TestStrings < Test::Unit::TestCase
     assert_nothing_raised do
       I18n.localize("C'est une phrase d'exemple axée sur les caractères spéciaux")
     end
+
+    assert_nothing_raised do
+      I18n.localize("")
+    end
   end
 
   def test_localization_with_core_extensions

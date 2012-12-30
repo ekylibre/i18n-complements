@@ -8,3 +8,8 @@ fra:
       format:
         format: "%n%s%u"
         precision: 2
+  boolean:
+    formats:
+      default:
+        true: Oui
+        false: Non
