@@ -1,6 +1,9 @@
 require 'bundler/setup'
 require 'test/unit'
 
+require 'coveralls'
+Coveralls.wear!('rails')
+
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 

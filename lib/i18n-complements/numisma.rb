@@ -2,6 +2,7 @@
 # It represents the international monetary system with all its currencies like specified in ISO 4217
 # Numisma comes from latin: It designs here the "science of money"
 require 'net/http'
+require 'yaml'
 require 'i18n-complements/numisma/currency'
 
 module I18nComplements
@@ -45,8 +46,8 @@ module I18nComplements
           rate = doc.root.content.to_f
         rescue
           uri = URI("http://download.finance.yahoo.com/d/quotes.csv?s=#{from}#{to}=X&f=l1")
-          response = Net::HTTP.post_form(uri)
-          rate = response.body.to_f
+          response = Net::HTTP.get(uri)
+          rate = response.strip.to_f
         end
         return rate
       end
