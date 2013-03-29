@@ -5,7 +5,7 @@ PATH
       i18n (>= 0.6)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     colorize (0.5.8)
     coveralls (0.6.3)
@@ -17,6 +17,7 @@ GEM
     i18n (0.6.4)
     mime-types (1.21)
     multi_json (1.7.2)
+    rake (10.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     simplecov (0.7.1)
@@ -29,5 +30,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  coveralls (> 0)
+  coveralls (~> 0.6.3)
   i18n-complements!
+  rake (> 10)
