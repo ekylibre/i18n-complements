@@ -17,6 +17,6 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   add_runtime_dependency = (s.respond_to?(:add_runtime_dependency) ? :add_runtime_dependency : :add_dependency)
   s.send(add_runtime_dependency, "i18n", [">= 0.6"])
-  s.add_development_dependency, "coveralls", ["> 0"])
+  s.add_development_dependency("coveralls", "> 0")
 end
 
