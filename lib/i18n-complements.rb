@@ -2,6 +2,7 @@ require 'i18n'
 require 'i18n-complements/numisma'
 require 'i18n-complements/localize_extension'
 require 'i18n-complements/core_extension'
+require 'i18n-complements/version'
 
 module I18n
 

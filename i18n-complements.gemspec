@@ -1,17 +1,18 @@
-# encoding: utf-8
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'i18n-complements/version'
+
 Gem::Specification.new do |s|
   s.name = "i18n-complements"
-  File.open("VERSION", "rb") do |f|
-    s.version = f.read
-  end
+  s.version = I18nComplements::VERSION
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.author = "Brice Texier"
   s.email  = "burisu@oneiros.fr"
   s.summary = "I18n missing functionnalities"
   s.extra_rdoc_files = [ "LICENSE", "README.rdoc" ]
-  s.test_files = `git ls-files test/test_*.rb`.split("\n") 
-  exclusions = [ "#{s.name}.gemspec", ".travis.yml", ".gitignore", "Gemfile", "Gemfile.lock", "Rakefile"]
-  s.files = `git ls-files`.split("\n").delete_if{|f| exclusions.include?(f)}
+  s.test_files = `git ls-files test`.split("\n") 
+  s.files = `git ls-files lib README.rdoc LICENSE`.split("\n")
   s.homepage = "http://github.com/burisu/i18n-complements"
   s.license = "MIT"
   s.require_path = "lib"
