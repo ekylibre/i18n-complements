@@ -15,7 +15,8 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/burisu/i18n-complements"
   s.license = "MIT"
   s.require_path = "lib"
-  add_runtime_dependency = (s.respond_to?(:add_runtime_dependency) ? :add_runtime_dependency : :add_dependency)
-  s.send(add_runtime_dependency, "i18n", [">= 0.6"])
+  s.add_dependency("i18n", ">= 0.6")
+  s.add_development_dependency("coveralls", "~> 0.6.3")
+  s.add_development_dependency("rake", "> 10")
 end
 

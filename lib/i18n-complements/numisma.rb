@@ -2,6 +2,7 @@
 # It represents the international monetary system with all its currencies like specified in ISO 4217
 # Numisma comes from latin: It designs here the "science of money"
 require 'net/http'
+require 'yaml'
 require 'i18n-complements/numisma/currency'
 
 module I18nComplements
@@ -37,10 +38,18 @@ module I18nComplements
       def currency_rate(from, to)
         raise ArgumentError.new(":from currency is unknown (#{from.class}:#{from.inspect})") if Numisma[from].nil?
         raise ArgumentError.new(":to currency is unknown (#{to.class}:#{to.inspect})") if Numisma[to].nil?
-        uri = URI("http://www.webservicex.net/CurrencyConvertor.asmx/ConversionRate")
-        response = Net::HTTP.post_form(uri, 'FromCurrency' => from, 'ToCurrency' => to)
-        doc = ::LibXML::XML::Parser.string(response.body).parse
-        return doc.root.content.to_f
+        rate = nil
+        begin
+          uri = URI("http://www.webservicex.net/CurrencyConvertor.asmx/ConversionRate")
+          response = Net::HTTP.post_form(uri, 'FromCurrency' => from, 'ToCurrency' => to)
+          doc = ::LibXML::XML::Parser.string(response.body).parse
+          rate = doc.root.content.to_f
+        rescue
+          uri = URI("http://download.finance.yahoo.com/d/quotes.csv?s=#{from}#{to}=X&f=l1")
+          response = Net::HTTP.get(uri)
+          rate = response.strip.to_f
+        end
+        return rate
       end
       
       
