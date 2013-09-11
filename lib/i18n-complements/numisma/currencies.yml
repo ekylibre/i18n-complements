@@ -976,6 +976,30 @@ WST:
   number: '882'
   precision: 2
   iso_name: Tala
+XAF:
+  active: true
+  countries: [cm, cf, td, cg, gq, ga] 
+  number: '950'
+  precision: 0
+  iso_name: CFA Franc BEAC
+XCD:
+  active: true
+  countries: [ai, ag, dm, gd, ms, kn, lc, vc] 
+  number: '951'
+  precision: 2
+  iso_name: East Carribean Dollar
+XOF:
+  active: true
+  countries: [bj, bf, ci, gw, ml, ne, sn, tg] 
+  number: '952'
+  precision: 0
+  iso_name: CFA Franc BCEAO
+XPF:
+  active: true
+  countries: [pf, nc, wf] 
+  number: '953'
+  precision: 0
+  iso_name: CFP Franc
 YER:
   active: true
   countries: [ye]
