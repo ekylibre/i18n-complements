@@ -1,9 +1,9 @@
 = I18nComplements
 {<img src="https://badge.fury.io/rb/i18n-complements.png" alt="Gem Version" />}[http://badge.fury.io/rb/i18n-complements]
-{<img src="https://api.travis-ci.org/burisu/i18n-complements.png?branch=master"/>}[https://travis-ci.org/burisu/i18n-complements]
-{<img src="https://gemnasium.com/burisu/i18n-complements.png"/>}[https://gemnasium.com/burisu/i18n-complements]
-{<img src="https://codeclimate.com/github/burisu/i18n-complements.png" />}[https://codeclimate.com/github/burisu/i18n-complements]
-{<img src="https://coveralls.io/repos/burisu/i18n-complements/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/burisu/i18n-complements]
+{<img src="https://api.travis-ci.org/ekylibre/i18n-complements.png?branch=master"/>}[https://travis-ci.org/ekylibre/i18n-complements]
+{<img src="https://gemnasium.com/ekylibre/i18n-complements.png"/>}[https://gemnasium.com/ekylibre/i18n-complements]
+{<img src="https://codeclimate.com/github/ekylibre/i18n-complements.png" />}[https://codeclimate.com/github/ekylibre/i18n-complements]
+{<img src="https://coveralls.io/repos/ekylibre/i18n-complements/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/ekylibre/i18n-complements]
 
 
 I18n complements provides:

@@ -10,13 +10,13 @@ module I18n
         elsif object.respond_to?(:abs)
           if currency = options[:currency]
             raise I18n::InvalidCurrency.new("Currency #{currency.to_s} does not exist.") unless I18nComplements::Numisma[currency.to_s]
-            return I18nComplements::Numisma[currency.to_s].localize(object, :locale=>locale)
+            return I18nComplements::Numisma[currency.to_s].localize(object, :locale => locale)
           else
             formatter = I18n.translate('number.format'.to_sym, :locale => locale, :default => {})
             if formatter.is_a?(Proc)
               return formatter[object]
             elsif formatter.is_a?(Hash)
-              formatter = {:format => "%n", :separator=>'.', :delimiter=>'', :precision=>3}.merge(formatter).merge(options)
+              formatter = {:format => "%n", :separator => '.', :delimiter => '', :precision => 3}.merge(formatter).merge(options)
               format = formatter[:format]
               negative_format = formatter[:negative_format] || "-" + format
 
@@ -30,24 +30,9 @@ module I18n
               value = integrals.gsub(/^0+[1-9]+/, '').gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{formatter[:delimiter]}")
               decimals = "0" if decimals.to_s.match(/^\s*$/) and object.is_a?(Float)
               unless decimals.to_s.match(/^\s*$/)
-                # decimals = decimals.gsub(/0+$/, '').ljust(formatter[:precision], '0').reverse.split(/(?=\d{3})/).reverse.collect{|x| x.reverse}.join(formatter[:delimiter])
                 value << formatter[:separator]
-
-                i = 0
-                decimals.gsub(/0+$/, '').ljust(formatter[:precision], '0').each_char do |c|
-                  if i == 3
-                    value << formatter[:delimiter] 
-                    i = 0
-                  end
-                  value << c
-                  i += 1
-                end
-                # .reverse.split(/(?=\d{3})/).reverse.collect{|x| x.reverse}.join(formatter[:delimiter])
-                  # value << decimals
+                value << decimals.gsub(/0+$/, '').ljust(formatter[:precision], '0').scan(/.{1,3}/).join(formatter[:delimiter])
               end
-
-              # decimals = decimals.gsub(/0+$/, '').ljust(formatter[:precision], '0').reverse.split(/(?=\d{3})/).reverse.collect{|x| x.reverse}.join(formatter[:delimiter])
-              # value += formatter[:separator] + decimals unless decimals.to_s.match(/^\s*$/)
               return format.gsub(/%n/, value).gsub(/%s/, "\u{00A0}")
             end
           end
