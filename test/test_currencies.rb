@@ -45,9 +45,12 @@ class TestCurrencies < Test::Unit::TestCase
   
   def test_number_formatting_with_currency
     number = 413500
-    assert_equal "¥413,500", ::I18n.localize(number, :locale => :eng, :currency=>"JPY")
-    assert_equal "413\u{00A0}500\u{00A0}¥", ::I18n.localize(number, :locale => :fra, :currency=>"JPY")
-    assert_equal "413,500円", ::I18n.localize(number, :locale => :jpn, :currency=>"JPY")
+    assert_equal "¥413,500", ::I18n.localize(number, :locale => :eng, :currency => "JPY")
+    assert_equal "413\u{00A0}500\u{00A0}¥", ::I18n.localize(number, :locale => :fra, :currency => "JPY")
+    assert_equal "413,500円", ::I18n.localize(number, :locale => :jpn, :currency => "JPY")
+    assert_equal "€0.325,1", ::I18n.localize(0.3251, :locale => :eng, :currency => "EUR")
+    assert_equal "0,325\u{00A0}1\u{00A0}F", ::I18n.localize(0.3251, :locale => :fra, :currency => "FRF")
+    assert_equal "€123,852.325,1", ::I18n.localize(123852.3251, :locale => :eng, :currency => "EUR")
   end
 
   def test_number_formatting_with_currency_with_core_extensions

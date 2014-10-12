@@ -318,7 +318,7 @@ FRF:
   countries: [fr]
   number: "250"
   precision: 2
-  symbol: 'F'
+  unit: 'F'
 GBP:
   active: true
   countries: [gb, gg, im, je]

@@ -53,10 +53,10 @@ module I18nComplements
         formatcy  = I18n.translate("number.currency.formats.#{self.code}".to_sym, :locale => options[:locale], :default => {})
         formatcy[:negative_format] ||= "-" + formatcy[:format] if formatcy[:format]
 
-        prec = {}
-        prec[:separator] = formatcy[:separator] || defaultt[:separator] || defaults[:separator] || ','
-        prec[:delimiter] = formatcy[:delimiter] || defaultt[:delimiter] || defaults[:delimiter] || ''
-        prec[:precision] = formatcy[:precision] || self.precision || defaultt[:precision] || 3
+        formatter = {}
+        formatter[:separator] = formatcy[:separator] || defaultt[:separator] || defaults[:separator] || ','
+        formatter[:delimiter] = formatcy[:delimiter] || defaultt[:delimiter] || defaults[:delimiter] || ''
+        formatter[:precision] = formatcy[:precision] || self.precision || defaultt[:precision] || 3
         format           = formatcy[:format] || defaultt[:format] || "%n-%u" # defaults[:format] || 
         negative_format  = formatcy[:negative_format] || defaultt[:negative_format] || defaults[:negative_format] || "-" + format
         unit             = formatcy[:unit] || self.unit || self.code
@@ -68,10 +68,10 @@ module I18nComplements
         
         value = amount.to_s
         integers, decimals = value.split(/\./)
-        value = integers.gsub(/^0+[1-9]+/, '').gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{prec[:delimiter]}")
+        value = integers.gsub(/^0+[1-9]+/, '').gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{formatter[:delimiter]}")
         unless decimals.to_s.match(/^\s*$/)
-          decimals = decimals.gsub(/0+$/, '').ljust(prec[:precision], '0').reverse.split(/(?=\d{3})/).reverse.collect{|x| x.reverse}.join(prec[:delimiter])
-          value += prec[:separator] + decimals
+          value << formatter[:separator]
+          value << decimals.gsub(/0+$/, '').ljust(formatter[:precision], '0').scan(/.{1,3}/).join(formatter[:delimiter])
         end
         return format.gsub(/%n/, value).gsub(/%u/, unit).gsub(/%s/, "\u{00A0}")
       end
