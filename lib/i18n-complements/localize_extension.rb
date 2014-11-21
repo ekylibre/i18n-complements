@@ -38,7 +38,7 @@ module I18n
             end
           end
         elsif object.is_a?(TrueClass) or object.is_a?(FalseClass)
-          return I18n.translate("boolean.human.#{object.to_s}_class")
+          return I18n.translate("boolean.human.#{object.to_s}_class", locale: locale)
         elsif object.is_a?(String)
           return object          
         else
