@@ -3,9 +3,10 @@ module I18n
 
     class Simple
 
-      def localize_with_complements(locale, object, format = :default, options = {})
+      def localize_with_complements(locale, object, format = nil, options = {})
         
         if object.respond_to?(:strftime)
+          format ||= :default
           return localize_without_complements(locale, object, format, options)
         elsif object.respond_to?(:abs)
           if currency = options[:currency]
@@ -37,7 +38,7 @@ module I18n
             end
           end
         elsif object.is_a?(TrueClass) or object.is_a?(FalseClass)
-          return I18n.translate("boolean.formats.#{format}.#{object.to_s}")
+          return I18n.translate("boolean.human.#{object.to_s}_class")
         elsif object.is_a?(String)
           return object          
         else
