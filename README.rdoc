@@ -1,4 +1,4 @@
-= I18nComplements
+= I18n::Complements
 {<img src="https://badge.fury.io/rb/i18n-complements.png" alt="Gem Version" />}[http://badge.fury.io/rb/i18n-complements]
 {<img src="https://api.travis-ci.org/ekylibre/i18n-complements.png?branch=master"/>}[https://travis-ci.org/ekylibre/i18n-complements]
 {<img src="https://gemnasium.com/ekylibre/i18n-complements.png"/>}[https://gemnasium.com/ekylibre/i18n-complements]
