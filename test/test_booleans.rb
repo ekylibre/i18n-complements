@@ -1,8 +1,7 @@
 # encoding: utf-8
 require 'helper'
 
-class TestBooleans < Test::Unit::TestCase
-
+class TestBooleans < I18n::Complements::TestCase
   def test_localization
     assert_nothing_raised do
       I18n.localize(true)
@@ -20,15 +19,14 @@ class TestBooleans < Test::Unit::TestCase
 
     assert_nothing_raised do
       false.localize
-    end   
+    end
 
     assert_nothing_raised do
       true.l
     end
-    
+
     assert_nothing_raised do
       false.l
-    end   
+    end
   end
-
 end

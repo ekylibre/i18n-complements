@@ -1,28 +1,26 @@
 # encoding: utf-8
 require 'helper'
 
-class TestExtensions < Test::Unit::TestCase
-  
+class TestExtensions < I18n::Complements::TestCase
   def setup
     I18n.locale = :eng
   end
 
   def test_string_translation
-    assert_equal "My example is so short", I18n.translate("my_example")
-    assert_equal I18n.translate("my_example"), "my_example".translate
-    assert_equal I18n.translate("my_example"), "my_example".t
+    assert_equal 'My example is so short', I18n.translate('my_example')
+    assert_equal I18n.translate('my_example'), 'my_example'.translate
+    assert_equal I18n.translate('my_example'), 'my_example'.t
 
-    assert_equal "My example is short", I18n.translate("my.example")
-    assert_equal I18n.translate("my.example"), "my.example".translate
-    assert_equal I18n.translate("my.example"), "my.example".t
+    assert_equal 'My example is short', I18n.translate('my.example')
+    assert_equal I18n.translate('my.example'), 'my.example'.translate
+    assert_equal I18n.translate('my.example'), 'my.example'.t
   end
 
   def test_symbol_translation
-    assert_equal "My example is so short", I18n.translate(:my_example)
+    assert_equal 'My example is so short', I18n.translate(:my_example)
     assert_equal I18n.translate(:my_example), :my_example.translate
     assert_equal I18n.translate(:my_example), :my_example.t
   end
-
 
   def test_date_localization
     date = Date.civil(1999, 12, 31)
@@ -71,5 +69,4 @@ class TestExtensions < Test::Unit::TestCase
 
     assert_equal I18n.localize(time), time.l
   end
-
 end
