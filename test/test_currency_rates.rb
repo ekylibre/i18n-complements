@@ -3,6 +3,11 @@ require 'helper'
 
 class TestCurrencies < I18n::Complements::TestCase
   def test_conversion_rate
+    rate = I18n::Complements::Numisma.currency_rate('EUR', 'FRF')
+    assert !rate.zero?, 'Rate should not be zero'
+
+    assert rate == 6.55957
+
     assert_raise I18n::InvalidCurrency do
       I18n::Complements::Numisma.currency_rate(:EUR, 'JPY')
     end
@@ -17,7 +22,8 @@ class TestCurrencies < I18n::Complements::TestCase
 
     r1 = I18n::Complements::Numisma.currency_rate('EUR', 'JPY')
     r2 = I18n::Complements::Numisma.currency_rate('JPY', 'EUR')
-    assert 0.01 >= 1 - (r1 * r2).round(2), "EUR -> JPY: #{r1}, JPY -> EUR: #{r2}, #{r1 * r2}, #{(r1 * r2).round(2)}"
+    rounded_one = (r1 * r2).round(2)
+    assert rounded_one >= 0.99, "EUR -> JPY: #{r1}, JPY -> EUR: #{r2}, #{r1 * r2}, #{rounded_one}"
 
     rate = I18n::Complements::Numisma.currency_rate('EUR', 'JPY')
     assert !rate.nil?, 'Rate cannot be nil'

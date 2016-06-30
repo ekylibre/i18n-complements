@@ -7,7 +7,7 @@ module I18n
           return localize_without_complements(locale, object, format, options)
         elsif object.respond_to?(:abs)
           if currency = options[:currency]
-            raise I18n::InvalidCurrency.new("Currency #{currency} does not exist.") unless I18n::Complements::Numisma[currency.to_s]
+            raise I18n::InvalidCurrency, "Currency #{currency} does not exist." unless I18n::Complements::Numisma[currency.to_s]
             return I18n::Complements::Numisma[currency.to_s].localize(object, locale: locale)
           else
             formatter = I18n.translate('number.format'.to_sym, locale: locale, default: {})

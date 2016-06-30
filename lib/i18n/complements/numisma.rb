@@ -22,7 +22,7 @@ module I18n
         # Returns a hash with active currencies only
         def active_currencies
           x = {}
-          for code, currency in @@currencies
+          @@currencies.each do |code, currency|
             x[code] = currency if currency.active
           end
           x
@@ -33,10 +33,21 @@ module I18n
           @@currencies[currency_code]
         end
 
+        def fixed_currency_rate(from, to)
+          rates = @@fixed_currency_rates[from]
+          return nil unless rates
+          rates[to]
+        end
+
         def currency_rate(from, to)
-          raise InvalidCurrency.new(":from currency is unknown (#{from.class}:#{from.inspect})") if Numisma[from].nil?
-          raise InvalidCurrency.new(":to currency is unknown (#{to.class}:#{to.inspect})") if Numisma[to].nil?
-          rate = nil
+          if Numisma[from].nil?
+            raise InvalidCurrency, ":from currency is unknown (#{from.class}:#{from.inspect})"
+          end
+          if Numisma[to].nil?
+            raise InvalidCurrency, ":to currency is unknown (#{to.class}:#{to.inspect})"
+          end
+          rate = fixed_currency_rate(from, to)
+          return rate if rate
           begin
             uri = URI('http://www.webservicex.net/CurrencyConvertor.asmx/ConversionRate')
             response = Net::HTTP.post_form(uri, 'FromCurrency' => from, 'ToCurrency' => to)
@@ -53,15 +64,31 @@ module I18n
         # Load currencies
         def load_currencies
           @@currencies = {}
-          for code, details in YAML.load_file(currencies_file)
-            currency = Currency.new(code, details.inject({}) { |h, p| h[p[0].to_sym] = p[1]; h })
+          yaml = YAML.load_file(currencies_file)
+          yaml.each do |code, attributes|
+            currency = Currency.new(code, attributes.inject({}) { |h, p| h[p[0].to_sym] = p[1]; h })
             @@currencies[currency.code] = currency
+          end
+        end
+
+        # Load fixed currency rates with reverse rates too.
+        def load_fixed_currency_rates
+          @@fixed_currency_rates = {}
+          yaml = YAML.load_file(File.join(File.dirname(__FILE__), 'numisma', 'fixed_currency_rates.yml'))
+          yaml.each do |from, rates|
+            @@fixed_currency_rates[from] ||= {}
+            rates.each do |to, rate|
+              @@fixed_currency_rates[from][to] = rate
+              @@fixed_currency_rates[to] ||= {}
+              @@fixed_currency_rates[to][from] = 1 / rate
+            end
           end
         end
       end
 
       # Finally load all currencies
       load_currencies
+      load_fixed_currency_rates
     end
   end
 
